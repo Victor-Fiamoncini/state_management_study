@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:state_management_study/mobx/home_store.dart';
+import 'package:rx_notifier/rx_notifier.dart';
+import 'package:state_management_study/rx/home_store.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,7 +29,7 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button many times:'),
-            Observer(
+            RxBuilder(
               builder: (_) {
                 return Text(
                   '${homeStore.counter.value}',

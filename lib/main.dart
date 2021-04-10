@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:state_management_study/redux/home/home_actions.dart';
-import 'package:state_management_study/redux/home/home_store.dart';
+import 'package:state_management_study/bloc/home_bloc.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,6 +17,8 @@ class MyApp extends StatelessWidget {
 }
 
 class Home extends StatelessWidget {
+  final homeBloc = HomeBloc();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,11 +28,11 @@ class Home extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text('You have pushed the button many times:'),
-            AnimatedBuilder(
-              animation: homeStore,
+            StreamBuilder(
+              stream: homeBloc.stream,
               builder: (_, __) {
                 return Text(
-                  '${homeStore.state.value}',
+                  '${homeBloc.state}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -41,7 +42,7 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          homeStore.dispatcher(HomeAction.increment);
+          homeBloc.add(HomeEvent.increment);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

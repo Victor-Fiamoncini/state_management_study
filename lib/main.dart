@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:state_management_study/redux/app_store.dart';
+import 'package:state_management_study/redux/home/home_actions.dart';
+import 'package:state_management_study/redux/home/home_store.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,10 +28,10 @@ class Home extends StatelessWidget {
           children: [
             const Text('You have pushed the button many times:'),
             AnimatedBuilder(
-              animation: appStore,
+              animation: homeStore,
               builder: (_, __) {
                 return Text(
-                  '${appStore.state.value}',
+                  '${homeStore.state.value}',
                   style: Theme.of(context).textTheme.headline4,
                 );
               },
@@ -40,7 +41,7 @@ class Home extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          appStore.dispatcher(AppAction.increment);
+          homeStore.dispatcher(HomeAction.increment);
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),

@@ -1,6 +1,6 @@
 # State Management Study
 
-Simple state management strategies study, includes: Redux, Bloc, Mobx & Rx.
+State management strategies study, includes: Redux, Bloc, Mobx & Rx.
 
 ----------
 
